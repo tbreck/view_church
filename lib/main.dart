@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     Image.asset('assets/logo.png'),
-                    const Text('New Logo')
+                    const Text('New Logo Test')
                   ],
                 ),
               ),
