@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
-            backgroundColor: Color.fromARGB(255, 5, 44, 72),
+            backgroundColor: const Color.fromARGB(255, 5, 44, 72),
             // title: const Text('View Church'),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
