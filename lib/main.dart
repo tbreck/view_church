@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
-            title: const Text('View Church'),
+            backgroundColor: Color.fromARGB(255, 5, 44, 72),
+            // title: const Text('View Church'),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/mainlogo.png',
+                  fit: BoxFit.contain,
+                  height: 32,
+                ),
+              ],
+            ),
           ),
           body: Column(
             children: [
