@@ -1,115 +1,81 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(MaterialApp(
+    initialRoute: '/',
+    routes: {
+      '/': (context) => const HomeRoute(),
+      '/second': (context) => const SecondRoute(),
+      '/third': (context) => const ThirdRoute(),
+    },
+  ));
+}
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class HomeRoute extends StatelessWidget {
+  const HomeRoute({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 5, 44, 72),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/mainlogo.png',
-                fit: BoxFit.contain,
-                height: 32,
-              ),
-            ], // Children
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Geeks for Geeks'),
+        backgroundColor: Colors.green,
+      ),
+      body: Center(
+          child: Column(
+        children: <Widget>[
+          RaisedButton(
+            child: const Text('Click Me!'),
+            onPressed: () {
+              Navigator.pushNamed(context, '/second');
+            },
           ),
-        ),
-        body: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.all(10.0),
-              child: Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    -_launchGive();
-                  },
-                  child: const Text(
-                    'Want to Give?',
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            ),
-            Card(
-              child: Column(
-                children: const <Widget>[
-                  Divider(
-                    height: 20,
-                    thickness: 5,
-                    indent: 0,
-                    endIndent: 0,
-                    color: Colors.black,
-                  ),
-                  FittedBox(
-                    fit: BoxFit.fill,
-                    child: Text(
-                      'Through a lifestyle of \nworship and obedience, \nwe make and deploy disciples \nwho glorify the Father.',
-                      textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: onTabTapped,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.web_outlined),
-              label: 'Website',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.pages_outlined),
-              label: 'Page 1',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.pages_rounded),
-              label: 'Page 2',
-            ),
-          ],
+          RaisedButton(
+            child: const Text('Tap Me!'),
+            onPressed: () {
+              Navigator.pushNamed(context, '/third');
+            },
+          ),
+        ],
+      )),
+    );
+  }
+}
+
+class SecondRoute extends StatelessWidget {
+  const SecondRoute({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Click Me Page"),
+        backgroundColor: Colors.green,
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Back!'),
         ),
       ),
     );
   }
 }
 
-_launchGive() async {
-  const url = 'https://pushpay.com/g/viewchurch?src=hpp';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
-  }
-}
+class ThirdRoute extends StatelessWidget {
+  const ThirdRoute({Key? key}) : super(key: key);
 
-_launchWebsite() async {
-  const url = 'https://viewchurch.org';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
-  }
-}
-
-void onTabTapped(int index) {
-  switch (index) {
-    case 0:
-      // ignore: void_checks
-      return -_launchWebsite();
-    case 1:
-
-    case 2:
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Tap Me Page"),
+        backgroundColor: Colors.green,
+      ),
+    );
   }
 }
